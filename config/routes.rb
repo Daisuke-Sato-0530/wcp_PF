@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorite/create'
+  get 'favorite/destroy'
   get 'items/new'
   get 'items/create'
   get 'items/show'
