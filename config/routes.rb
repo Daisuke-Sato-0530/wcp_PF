@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
-  get 'favorite/create'
-  get 'favorite/destroy'
-  get 'items/new'
-  get 'items/create'
-  get 'items/show'
-  get 'items/index'
-  get 'rankings/new'
-  get 'rankings/create'
-  get 'rankings/show'
-  get 'rankings/index'
+
+  resources :rankings, only: [:new, :create, :show, :index]
+  resources :items, only: [:new, :create, :show, :index]
+  resources :comments, only: [:new, :create, :update, :destroy]
+  resources :favorites, only: [:create, :destroy]
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
