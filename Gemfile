@@ -67,3 +67,5 @@ gem 'ransack'
 
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+
+gem 'cocoon'
