@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root :to => 'homes#top'
+  get 'homes/about'
   resources :rankings, only: [:new, :create, :show, :index]
   resources :items, only: [:new, :create, :show, :index]
   resources :comments, only: [:new, :create, :update, :destroy]
