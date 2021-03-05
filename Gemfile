@@ -70,3 +70,4 @@ gem "refile-mini_magick"
 
 gem 'cocoon'
 gem "jquery-rails"
+gem 'bootstrap', '~> 4.5'
