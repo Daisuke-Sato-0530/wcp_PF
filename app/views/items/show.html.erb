@@ -1,2 +1,24 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="container">
+  <div class="row mb-5 mt-5 ml-1">
+    <div class="col-sm-2"><h2><%= @item.name %></h2></div>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <%= image_tag attachment_url(@item, :image, :fill, 150, 150, format: "jpg") %>
+    </div>
+    <div class="col-sm-8"><%= @item.body%></div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-sm-12">
+      <div>
+        <table class="table">
+          <thead>コメント</thead>
+          <tr>
+            <th></th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

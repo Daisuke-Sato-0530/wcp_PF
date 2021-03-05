@@ -4,7 +4,24 @@
   </div>
   <div class="row">
     <div class="col">
+      <%= form_with(model: @ranking, local: true) do |ranking| %>
+        <%= ranking.label :title %>
+        <%= ranking.text_field :title %>
 
+        <%= ranking.label :introduction %>
+        <%= ranking.text_area :introduction %>
+        <div class="parents">
+          <%= ranking.fields_for :items do |item| %>
+            <%= render "item_fields", f: item %>　<!-- レンダーでItem用のフォーム呼び出し-->
+          <% end %>
+          <div class="links">
+            <%= link_to_add_association "アイテム追加", ranking, :items %> <!--このリンクを押すとItemのフォームが増える-->
+          </div>
+        </div>
+        <div class="actions">
+          <%= ranking.submit %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
