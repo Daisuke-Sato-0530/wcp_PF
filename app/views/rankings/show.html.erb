@@ -16,7 +16,7 @@
           <th style="width:20%">コメント数</th>
         </tr>
         <% @items.each do |item| %>
-          <tr>
+          <tr  id="item_<%= item.id %>">
             <td>
               <%= link_to item_path(item), class: 'hoge' do %>
               <%= image_tag attachment_url(item, :image, :fill, 150, 150, format: "jpg") %>
@@ -24,20 +24,8 @@
             </td>
             <td class="align-middle"><%= item.name %></td>
             <td class="align-middle"><%= item.body %></td>
-            <td class="align-middle">
-              <% if item.favorited_by?(current_user) %>
-                <p>
-                  <%= link_to item_favorites_path(item), method: :delete do %>
-                    ♥<%= item.favorites.count %> いいね
-                  <% end %>
-                </p>
-                <% else %>
-                <p>
-                  <%= link_to item_favorites_path(item), method: :post do %>
-                    ♡<%= item.favorites.count %> いいね
-                  <% end %>
-                </p>
-              <% end %>
+            <td class="favorite-btn">
+              <%= render 'favorites/favorite-btn', item: item %> <!--favoriteの部分のテンプレート-->
             </td>
             <td class="align-middle"><%= item.comments.count %></td>
           </tr>
