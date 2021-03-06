@@ -17,9 +17,15 @@ class RankingsController < ApplicationController
 
   def show
     @ranking = Ranking.find(params[:id])
+    #Item.left_outer_joins(:favorites)でItemモデルにFavoriteモデルを左外部結合。内部結合だと0いいねのitemが除外されそう？
+    #.where(ranking_id: @ranking.id)↑の記述、paramsでid取得したRankingのItemに絞り込む
+    #.group("id")で絞り込んだアイテムをidでまとめる(これが無いといいねの数だけItemが増える) groupの中身がidでなければならない理由は不明、item_id favorite_idではだめだった
+    #.order("count(favorites.item_id) desc") groupでまとめたitemを並べ替え、大きい順
+    @items = Item.left_outer_joins(:favorites).where(ranking_id: @ranking.id).group("id").order("count(favorites.item_id) desc")
   end
 
   def index
+    @rankings = Ranking.all
   end
 
   private

@@ -8,7 +8,14 @@
         <tr>
           <td><%= @ranking.introduction %></td>
         </tr>
-        <% @ranking.items.each do |item| %>
+        <tr>
+          <th style="width:20%"></th>　<!--width指定しないと間隔が固定されなくて変-->
+          <th style="width:20%">名前</th>
+          <th style="width:20%">説明</th>
+          <th style="width:20%">いいね</th>
+          <th style="width:20%">コメント数</th>
+        </tr>
+        <% @items.each do |item| %>
           <tr>
             <td>
               <%= link_to item_path(item), class: 'hoge' do %>
@@ -17,11 +24,27 @@
             </td>
             <td class="align-middle"><%= item.name %></td>
             <td class="align-middle"><%= item.body %></td>
-            <td class="align-middle">いいねといいねの数</td>
-            <td class="align-middle">コメント数</td>
+            <td class="align-middle">
+              <% if item.favorited_by?(current_user) %>
+                <p>
+                  <%= link_to item_favorites_path(item), method: :delete do %>
+                    ♥<%= item.favorites.count %> いいね
+                  <% end %>
+                </p>
+                <% else %>
+                <p>
+                  <%= link_to item_favorites_path(item), method: :post do %>
+                    ♡<%= item.favorites.count %> いいね
+                  <% end %>
+                </p>
+              <% end %>
+            </td>
+            <td class="align-middle"><%= item.comments.count %></td>
           </tr>
         <% end %>
       </table>
     </div>
   </div>
 </div>
+
+
