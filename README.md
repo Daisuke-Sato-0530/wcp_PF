@@ -24,7 +24,6 @@
 どのブランドの化粧品を買うか迷っている
 自分の好きな作品のキャラクターでランキングを作りたい
 競馬の優勝馬予想
-何かしら欲しい物がある人
 
 ## 機能一覧
 https://docs.google.com/spreadsheets/d/1cpxUNUsO8WlM7ArJrCf81vXnwz3kNMbq1Z1FZcW2svQ/edit#gid=0
