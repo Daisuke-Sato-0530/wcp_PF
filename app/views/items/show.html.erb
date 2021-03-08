@@ -5,7 +5,8 @@
   </div>
   <div class="row">
     <div class="col-sm-4">
-      <%= image_tag attachment_url(@item, :image, :fill, 150, 150, format: "jpg") %>
+      <%# image_tag attachment_url(@item, :image, :fill, 150, 150, format: "jpg") %>
+      <%= attachment_image_tag(@item, :image, :fill, 150, 150, fallback: "no_image.jpg",size:"150x150") %>
     </div>
     <div class="col-sm-8"><%= @item.body%></div>
   </div>
