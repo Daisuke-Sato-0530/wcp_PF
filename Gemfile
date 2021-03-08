@@ -75,3 +75,6 @@ gem 'bootstrap', '~> 4.5'
 gem 'omniauth','1.9.1'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
