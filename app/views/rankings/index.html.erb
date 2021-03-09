@@ -30,6 +30,13 @@
             </td>
             <td class="text-center align-middle"><%= ranking.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
+          <tr>
+            <td>
+              <% ranking.tag_list.each do |tag| %>
+                <span class="btn btn-primary"><%= link_to tag,rankings_path(tag_name: tag),class: "text-white"%></span>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
       </table>
     </div>

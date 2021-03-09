@@ -7,7 +7,6 @@ class RankingsController < ApplicationController
   def create
     @ranking = Ranking.new(ranking_params)
     @ranking.user_id = current_user.id
-
     if @ranking.save
       redirect_to ranking_path(@ranking)
     else
@@ -25,11 +24,15 @@ class RankingsController < ApplicationController
   end
 
   def index
-    @rankings = Ranking.all
+    if params[:tag_name]
+      @rankings = Ranking.tagged_with("#{params[:tag_name]}")
+    else
+      @rankings = Ranking.all
+    end
   end
 
   private
     def ranking_params
-      params.require(:ranking).permit(:title, :introduction, items_attributes: [:id, :image, :name, :body, :_destroy])#rankingにネストしたitemを保存可能にするための記述
+      params.require(:ranking).permit(:title,:item_id, :tag_list,:introduction, items_attributes: [:id, :image, :name, :body, :_destroy])#rankingにネストしたitemを保存可能にするための記述
     end
 end

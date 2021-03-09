@@ -10,6 +10,9 @@
 
         <%= ranking.label :introduction %>
         <%= ranking.text_area :introduction %>
+
+        <%= ranking.label :tag_list %>
+        <%= ranking.text_field :tag_list, value: @ranking.tag_list.join(',') %>
         <div class="parents">
           <%= ranking.fields_for :items do |item| %>
             <%= render "item_fields", f: item %>　<!-- レンダーでItem用のフォーム呼び出し-->

@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :ranking
-  has_many :comments,dependent: :destroy
-  has_many :favorites,dependent: :destroy
+  has_many :comments,dependent: :delete_all
+  has_many :favorites,dependent: :delete_all
   attachment :image
 
   def favorited_by?(user)
