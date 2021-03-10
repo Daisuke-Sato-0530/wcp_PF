@@ -7,7 +7,6 @@ class RankingsController < ApplicationController
   def create
     @ranking = Ranking.new(ranking_params)
     @ranking.user_id = current_user.id
-
     if @ranking.save
       redirect_to ranking_path(@ranking)
     else
@@ -24,12 +23,31 @@ class RankingsController < ApplicationController
     @items = Item.left_outer_joins(:favorites).where(ranking_id: @ranking.id).group("id").order("count(favorites.item_id) desc")
   end
 
+  #def index
+    #if params[:tag_name]
+      #@rankings = Ranking.tagged_with("#{params[:tag_name]}")
+    #else
+      #@rankings = Ranking.all
+    #end
+  #end
+
   def index
-    @rankings = Ranking.all
+    if params[:tag_name]#タグを押してタグのパラメーターが送られてきたら
+      @search = Ranking.ransack(params[:q])#検索するモデル
+      @rankings = @search.result#検索結果
+      @rankings = Ranking.tagged_with("#{params[:tag_name]}")
+    else
+      @search = Ranking.ransack(params[:q])#検索するモデル
+      @rankings = @search.result#検索結果
+    end
+
+
   end
+
+
 
   private
     def ranking_params
-      params.require(:ranking).permit(:title, :introduction, items_attributes: [:id, :image, :name, :body, :_destroy])#rankingにネストしたitemを保存可能にするための記述
+      params.require(:ranking).permit(:title,:item_id, :tag_list,:introduction, items_attributes: [:id, :image, :name, :body, :_destroy])#rankingにネストしたitemを保存可能にするための記述
     end
 end

@@ -71,7 +71,12 @@ gem "refile-mini_magick"
 gem 'cocoon'
 gem "jquery-rails"
 gem 'bootstrap', '~> 4.5'
+gem 'acts-as-taggable-on', '~> 6.0'
+gem 'ransack'
 
 gem 'omniauth','1.9.1'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
