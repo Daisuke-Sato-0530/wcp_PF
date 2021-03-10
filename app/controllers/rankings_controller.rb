@@ -23,13 +23,28 @@ class RankingsController < ApplicationController
     @items = Item.left_outer_joins(:favorites).where(ranking_id: @ranking.id).group("id").order("count(favorites.item_id) desc")
   end
 
+  #def index
+    #if params[:tag_name]
+      #@rankings = Ranking.tagged_with("#{params[:tag_name]}")
+    #else
+      #@rankings = Ranking.all
+    #end
+  #end
+
   def index
-    if params[:tag_name]
+    if params[:tag_name]#タグを押してタグのパラメーターが送られてきたら
+      @search = Ranking.ransack(params[:q])#検索するモデル
+      @rankings = @search.result#検索結果
       @rankings = Ranking.tagged_with("#{params[:tag_name]}")
     else
-      @rankings = Ranking.all
+      @search = Ranking.ransack(params[:q])#検索するモデル
+      @rankings = @search.result#検索結果
     end
+
+
   end
+
+
 
   private
     def ranking_params
