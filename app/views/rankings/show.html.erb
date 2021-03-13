@@ -1,35 +1,41 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <table class="table">
+      <table class="table table-borderless">
         <tr>
-          <th><%= @ranking.title %></th>
+          <th class=" text-nowrap h1"><%= @ranking.title %></th>
         </tr>
         <tr>
           <td><%= @ranking.introduction %></td>
         </tr>
+      </table>
+      <table class="table table-hover">
         <tr>
-          <th style="width:20%"></th>　<!--width指定しないと間隔が固定されなくて変-->
+          <th class="text-center" style="width:1px;">順位</th>　<!--width指定しないと間隔が固定されなくて変-->
+          <th style="width:20%"></th>
           <th style="width:20%">名前</th>
-          <th style="width:20%">説明</th>
+          <th style="width:20%">概要</th>
           <th style="width:20%">いいね</th>
           <th style="width:20%">コメント数</th>
         </tr>
+        <% @rank = 1 %>
         <% @items.each do |item| %>
           <tr  id="item_<%= item.id %>">
+            <td class="text-center h1"style="width:1px;"><%= @rank%></td>
             <td>
-              <%= link_to item_path(item), class: 'hoge' do %>
+              <%= link_to item_path(item) do %>
               <%# image_tag attachment_url(item, :image, :fill, 150, 150, format: "jpg") %>
               <%= attachment_image_tag(item, :image, :fill, 150, 150, fallback: "no_image.jpg",size:"150x150") %>
               <% end %>
             </td>
             <td class="align-middle"><%= item.name %></td>
             <td class="align-middle"><%= item.body %></td>
-            <td class="favorite-btn">
+            <td class="favorite-btn align-middle">
               <%= render 'favorites/favorite-btn', item: item %> <!--favoriteの部分のテンプレート-->
             </td>
             <td class="align-middle"><%= item.comments.count %></td>
           </tr>
+          <% @rank = @rank+1 %>
         <% end %>
       </table>
     </div>

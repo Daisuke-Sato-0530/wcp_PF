@@ -1,7 +1,7 @@
 class RankingsController < ApplicationController
   def new
     @ranking = Ranking.new
-    #@items = @ranking.items.build
+    @items = @ranking.items.build
   end
 
   def create
