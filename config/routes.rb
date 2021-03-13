@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
   
   get 'homes/about'
-  resources :rankings, only: [:new, :create, :show, :index]
+  resources :rankings, only: [:new, :create, :show, :index, :destroy]
   resources :items, only: [:new, :create, :show, :index] do
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]

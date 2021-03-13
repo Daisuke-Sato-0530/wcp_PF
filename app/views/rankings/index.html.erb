@@ -16,39 +16,80 @@
         <thead>
           <tr>
             <th>ランキング</th>
-            <th class="text-center">いいね</th>
+            <!--<th class="text-center">いいね</th>-->
             <th class="text-center">コメント数</th>
             <th class="text-center">日付</th>
+            <th></th>
           </tr>
         </thead>
         <% @rankings.each do |ranking| %>
           <tr>
-            <td class="align-middle h3" style="height:100px;"><%= link_to ranking.title, ranking_path(ranking), class: "text-dark"%></td>
-            <td class="text-center align-middle">
-              <% @favorites_count = 0 %>
-              <% ranking.items.each do |item| %>
-                <% @favorites_count = @favorites_count + item.favorites.count %>
-              <% end %>
-              <%= @favorites_count %>
-            </td>
-            <td class="text-center align-middle">
+            <td class="align-middle h3" style="height:100px; width:33%;"><%= link_to ranking.title, ranking_path(ranking), class: "text-dark"%></td>
+            <!--<td class="text-center align-middle">-->
+            <!--  <% @favorites_count = 0 %>-->
+            <!--  <% ranking.items.each do |item| %>-->
+            <!--    <% @favorites_count = @favorites_count + item.favorites.count %>-->
+            <!--  <% end %>-->
+            <!--  <%= @favorites_count %>-->
+            <!--</td>-->
+            <td class="text-center align-middle" style="width:33%;">
               <% @comments_count = 0 %>
               <% ranking.items.each do |item| %>
                 <% @comments_count = @comments_count + item.comments.count %>
               <% end %>
               <%= @comments_count %>
             </td>
-            <td class="text-center align-middle"><%= ranking.created_at.strftime('%Y/%m/%d') %></td>
+            <td class="text-center align-middle" style="width:33%;"><%= ranking.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
             <td>
+              <span>タグ：</span>
               <% ranking.tag_list.each do |tag| %>
                 <span class="btn btn-primary"><%= link_to tag,rankings_path(tag_name: tag),class: "text-white"%></span>
               <% end %>
             </td>
+            <td></td>
+            
+            <% if ranking.user == current_user %>
+              <td class="text-center" style="width:33%">
+                <%= link_to "削除",ranking_path(ranking), method: :delete, class:"btn btn-danger btn-sm"%>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </table>
+    </div>
+  </div>
+</div>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">click me</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+      <div class="panel-body">内容</div>
+      <div class="panel-footer">フッター</div>
+    </div>
+  </div>
+</div>
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse2">click me</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <ul class="list-group">
+        <li class="list-group-item">One</li>
+        <li class="list-group-item">Two</li>
+        <li class="list-group-item">Three</li>
+      </ul>
+      <div class="panel-footer">フッター</div>
     </div>
   </div>
 </div>
