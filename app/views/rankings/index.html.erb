@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row mt-3">
-    <div class="col"></div>
-    <div class="col">
-      <div class="mb-3">
+    <div class="col-md-10 mx-auto">
+      <div class="text-right mb-3">
         <%= search_form_for @search do |f| %>
         <%= f.label :title_cont, "ランキングタイトルで検索" %><br>
         <%= f.search_field :title_cont %>
@@ -10,10 +9,9 @@
         <% end %>
       </div>
     </div>
-    <div class="col"></div>
   </div>
   <div class="row">
-    <div class="col-md-12 mx-auto">
+    <div class="col-md-10 mx-auto">
       <table class="table table-responsive text-break table-hover">
         <thead>
           <tr>

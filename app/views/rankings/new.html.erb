@@ -29,11 +29,11 @@
           <%= render "item_fields", f: item %>　<!-- レンダーでItem用のフォーム呼び出し-->
         <% end %>
         <div class="links text-center">
-          <%= link_to_add_association "アイテム追加", ranking, :items,class:"btn btn-secondary" %> <!--このリンクを押すとItemのフォームが増える-->
+          <%= link_to_add_association "アイテム追加", ranking, :items,class:"btn btn-secondary mb-5" %> <!--このリンクを押すとItemのフォームが増える-->
         </div>
       </div>
-        <div class="actions">
-          <%= ranking.submit %>
+        <div style="height:50px;">
+          <%= ranking.submit "ランキング作成", class:"btn btn-success w-100 h-100"%>
         </div>
       <% end %>
     </div>
