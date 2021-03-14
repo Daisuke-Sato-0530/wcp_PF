@@ -1,30 +1,46 @@
 <div class="container">
   <div class="row">
-    <h2 class="mt-3 bg-light">新規ランキング作成</h2>
-  </div>
-  <div class="row">
-    <div class="col">
+    <div class="col"></div>
+    <div class="col d-flex justify-content-center">
       <%= form_with(model: @ranking, local: true) do |ranking| %>
-        <%= ranking.label :title %>
-        <%= ranking.text_field :title %>
-
-        <%= ranking.label :introduction %>
-        <%= ranking.text_area :introduction %>
-
-        <%= ranking.label :tag_list %>
-        <%= ranking.text_field :tag_list, value: @ranking.tag_list.join(',') %>
-        <div class="parents">
-          <%= ranking.fields_for :items do |item| %>
-            <%= render "item_fields", f: item %>　<!-- レンダーでItem用のフォーム呼び出し-->
-          <% end %>
-          <div class="links">
-            <%= link_to_add_association "アイテム追加", ranking, :items %> <!--このリンクを押すとItemのフォームが増える-->
-          </div>
+      <div class="h2">
+        <div>タイトル<span class="text-muted h6 mb-0">(2文字以上30字以内)</span></div>
+        <%= ranking.text_field :title, maxlength: "30" ,class:"h2"%>ランキング
+      </div>
+      <div>
+        <div>説明<span class="text-muted mb-0">(500字以内)</span></div>
+        <%= ranking.text_area :introduction,size: "100x5", maxlength: "500" %>
+      </div>
+      <div>
+        <div>タグ<span class="text-muted mb-0">(半角のカンマで区切れば複数個登録できます。100字以内)</span></div>
+        <%= ranking.text_field :tag_list,size: "98", maxlength: "100", value: @ranking.tag_list.join(',') %>
+      </div>
+      <div class=" d-flex mb-0 mt-4 h4 align-items-end"><p class="mb-0">アイテム</p><p class="text-muted h6 mb-0">(最低1つはアイテムを入れてください)</p></div>
+      <table class="table table-borderless">
+        <tr>
+          <th style="width:43%;">画像</th>
+          <th>名前<span class="text-muted">(30字以内)</span></th>
+          <th>説明<span class="text-muted">(100字以内)</span></th>
+          <th></th>
+        </tr>
+      </table>
+      <div class="parents">
+        <%= ranking.fields_for :items do |item| %>
+          <%= render "item_fields", f: item %>　<!-- レンダーでItem用のフォーム呼び出し-->
+        <% end %>
+        <div class="links text-center">
+          <%= link_to_add_association "アイテム追加", ranking, :items,class:"btn btn-secondary" %> <!--このリンクを押すとItemのフォームが増える-->
         </div>
+      </div>
         <div class="actions">
           <%= ranking.submit %>
         </div>
       <% end %>
     </div>
+    <div class="col d-flex align-items-stretch">
+      
+    </div>
   </div>
+  
 </div>
+

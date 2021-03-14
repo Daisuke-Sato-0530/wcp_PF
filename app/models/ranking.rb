@@ -7,5 +7,5 @@ class Ranking < ApplicationRecord
   validates :title, presence: true
   validates :title, length: { in: 2..30 }     # 2文字以上30文字以下
   validates :introduction, length: { maximum: 500 }     # 500文字以下
-  validates :items, presence: true
+  validates :items, presence: true #アイテムを最低一つは登録
 end

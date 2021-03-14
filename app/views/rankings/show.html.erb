@@ -25,7 +25,7 @@
             <td>
               <%= link_to item_path(item) do %>
               <%# image_tag attachment_url(item, :image, :fill, 150, 150, format: "jpg") %>
-              <%= attachment_image_tag(item, :image, :fill, 150, 150, fallback: "no_image.jpg",size:"150x150") %>
+              <%= attachment_image_tag(item, :image, :fill, 100, 100, fallback: "no_image.jpg",size:"100x100") %>
               <% end %>
             </td>
             <td class="align-middle"><%= item.name %></td>

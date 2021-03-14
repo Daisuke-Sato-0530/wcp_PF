@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   attachment :image
   
   validates :name, presence: true
+  validates :name, length: { maximum: 30 }
   validates :body, length: { maximum: 100 }
 
   def favorited_by?(user)
