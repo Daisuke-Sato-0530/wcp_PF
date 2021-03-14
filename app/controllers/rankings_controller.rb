@@ -1,7 +1,7 @@
 class RankingsController < ApplicationController
   def new
     @ranking = Ranking.new
-    #@items = @ranking.items.build
+    @items = @ranking.items.build
   end
 
   def create
@@ -40,14 +40,18 @@ class RankingsController < ApplicationController
       @search = Ranking.ransack(params[:q])#検索するモデル
       @rankings = @search.result#検索結果
     end
-
-
   end
+  
+  def destroy
+    @ranking = Ranking.find(params[:id])
+    @ranking.destroy
+    redirect_to rankings_path
+  end 
 
 
 
   private
     def ranking_params
-      params.require(:ranking).permit(:title,:item_id, :tag_list,:introduction, items_attributes: [:id, :image, :name, :body, :_destroy])#rankingにネストしたitemを保存可能にするための記述
+      params.require(:ranking).permit(:title,:item_id,:format, :tag_list,:introduction, items_attributes: [:id, :image, :name, :body, :_destroy])#rankingにネストしたitemを保存可能にするための記述
     end
 end

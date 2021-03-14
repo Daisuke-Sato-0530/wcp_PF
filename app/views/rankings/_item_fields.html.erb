@@ -1,6 +1,10 @@
 <div class="nested-fields">
-      <%= f.attachment_field :image %>
-      <%= f.text_field :name %>
-      <%= f.text_area :body %>
-      <%= link_to_remove_association "remove item", f %>
+  <table class="table">
+    <tr>
+    <td class="pt-4"><%= f.attachment_field :image,class:"pb-4" %></td>
+    <td class="form-group"><%= f.text_area :name, maxlength: "30" %></td>
+    <td><%= f.text_area :body, maxlength: "100" %></td>
+    <td><%= link_to_remove_association "削除", f %></td>
+    </tr>
+  </table>
 </div>
