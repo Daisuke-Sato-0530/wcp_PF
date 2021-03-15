@@ -77,6 +77,7 @@ gem 'ransack'
 gem 'omniauth','1.9.1'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
+gem 'font-awesome-sass', '~> 5.13'
 group :production do
   gem 'mysql2'
 end
