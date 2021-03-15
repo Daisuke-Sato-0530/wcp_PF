@@ -19,6 +19,7 @@
       <% else %>
         <a class="btn btn-secondary" href="/users/sign_up" role="button">アカウント作成(google認証まだ)</a>
         <a class="btn btn-secondary" href="/users/sign_in" role="button">ログイン</a>
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post,class:"btn btn-secondary" %><!--aタグでメソッド指定どうやるの？-->
       <% end %>
     </ul>
   </nav>
