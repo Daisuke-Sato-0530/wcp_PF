@@ -27,6 +27,7 @@
           <tr>
             <td style="height:100px; width:50%"><%= comment.comment %></td>
             <td class="text-center" style="width:25%"><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+            <!--ログインしているユーザーで投稿-->
             <% if comment.user == current_user %>
               <%= form_with(model:[@item, @comment], local: true) do |f| %>
                 <td style="width:25%"><%= link_to "削除",item_comment_path(comment.item,comment), method: :delete, class:"btn btn-danger btn-sm"%></td>
