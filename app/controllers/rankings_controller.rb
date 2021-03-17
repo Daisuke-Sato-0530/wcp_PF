@@ -32,7 +32,7 @@ class RankingsController < ApplicationController
   #end
 
   def index
-    if params[:tag_name]#タグを押してタグのパラメーターが送られてきたら
+    if params[:tag_name].present?#タグを押してタグのパラメーターが送られてきたら
       @search = Ranking.ransack(params[:q])#検索するモデル
       @rankings = @search.result#検索結果
       @rankings = Ranking.tagged_with("#{params[:tag_name]}")
