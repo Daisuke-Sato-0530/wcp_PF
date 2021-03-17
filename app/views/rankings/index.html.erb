@@ -21,11 +21,11 @@
         <thead>
           <tr>
             <th></th>
-            <th class=""><%= sort_link(@search, :title,"ランキング") %></th>
-            <!--<th class="text-center">いいね</th>-->
-            <th class="text-center">コメント数</th>
+            <th class=""><%= sort_link(@search, :title,"ランキング名") %></th>
+            <th class="text-center text-nowrap"><%= sort_link(@search, :favorites,"いいね") %></th>
+            <th class="text-center"><%= sort_link(@search, :comments,"コメント数") %></th>
             <th class="text-center"><%= sort_link(@search, :created_at,"日付") %></th>
-            <th></th>
+            <th style="width:1px;"></th>
           </tr>
         </thead>
         <% @rankings.each do |ranking| %>
@@ -37,14 +37,9 @@
               <% end %>
             </td>
             <td class="align-middle h3" style="height:100px; width:33%;"><%= link_to ranking.title.truncate(30), ranking_path(ranking), class: "text-dark"%></td><!--ランキングタイトル(15文字まで表示)-->
-            <td class="text-center align-middle" style="width:33%;"><!--コメント数-->
-              <% @comments_count = 0 %>
-              <% ranking.items.each do |item| %>
-                <% @comments_count = @comments_count + item.comments.count %>
-              <% end %>
-              <%= @comments_count %>
-            </td>
-            <td class="text-center align-middle" style="width:33%;"><%= ranking.created_at.strftime('%Y/%m/%d') %></td><!--投稿日時-->
+            <td class="text-center align-middle" ><%= ranking.favorites %></td>
+            <td class="text-center align-middle" style="width:25%;"><%= ranking.comments %></td><!--コメント数-->
+            <td class="text-center align-middle" style="width:25%;"><%= ranking.created_at.strftime('%Y/%m/%d') %></td><!--投稿日時-->
             <td>
               <% if ranking.user == current_user %>
                 <td style="width:1px;">
@@ -83,6 +78,8 @@
                 <td></td>
               <% end %>
             </td>
+            <td></td>
+            <td></td>
           </tr>
         <% end %>
       </table>
@@ -122,4 +119,18 @@
     </div>
   </div>
 </div>
+<% @m = Array.new %>
+<% @mm = Array.new %>
 
+<% (-3..0).each do |m| %>
+  <% @m = Array.new %>
+  <% @d = m.month.from_now.beginning_of_month.to_date %>
+  <% (@d..@d.end_of_month.to_date).each do |mm| %>
+    <% @m.push(mm) %>
+  <% end %>
+  <% @mm.push(@m) %>
+  
+<% end %> 
+
+<%= @mm %>
+ 
