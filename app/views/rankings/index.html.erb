@@ -118,19 +118,22 @@
       <div class="panel-footer">フッター</div>
     </div>
   </div>
+  <table class="table">
+    <% @year.each do |m| %>
+      <% m.each do |s| %>
+        <tr>
+          <th>
+            <%= s %>
+            <% @r = Ranking.all %>
+            <% @r.each do |r| %>
+              <% if s.to_date == r.created_at.to_date %>
+                <%= r.title %>
+              <% end %>
+            <% end %>
+          </th>
+        </tr>
+      <% end %>
+    <% end %>
+    <%= paginate @year %>
+  </table>
 </div>
-<% @m = Array.new %>
-<% @mm = Array.new %>
-
-<% (-3..0).each do |m| %>
-  <% @m = Array.new %>
-  <% @d = m.month.from_now.beginning_of_month.to_date %>
-  <% (@d..@d.end_of_month.to_date).each do |mm| %>
-    <% @m.push(mm) %>
-  <% end %>
-  <% @mm.push(@m) %>
-  
-<% end %> 
-
-<%= @mm %>
- 

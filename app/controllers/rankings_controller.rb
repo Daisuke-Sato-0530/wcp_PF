@@ -40,6 +40,20 @@ class RankingsController < ApplicationController
       @search = Ranking.ransack(params[:q])#検索するモデル
       @rankings = @search.result#検索結果
     end
+    
+    @year = []
+    (-12..0).each do |m|
+      @m = []
+      @d = m.month.from_now.beginning_of_month.to_date
+      @m = (@d..@d.end_of_month.to_date)
+      #(@d..@d.end_of_month.to_date).each do |mm|
+        #@m.push(mm)
+      #end
+      @year.push(@m)
+    end
+    
+    @year = Kaminari.paginate_array(@year).page(params[:page]).per(1)
+    
   end
   
   def destroy
