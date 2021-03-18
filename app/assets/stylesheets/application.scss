@@ -16,3 +16,18 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+ 
+ @import url(https://fonts.googleapis.com/css?family=Bitter);
+   body {
+     margin: 0;
+     font-family: 'Bitter', serif;
+   }
+   h1 {
+     font-size: 40px;
+     font-weight: 400;
+     margin: 0;
+   }
+   p {
+     font-size: 20px;
+     margin-top: 26px;
+   }
