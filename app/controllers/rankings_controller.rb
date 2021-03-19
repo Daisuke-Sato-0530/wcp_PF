@@ -40,7 +40,7 @@ class RankingsController < ApplicationController
       @search = Ranking.ransack(params[:q])#検索するモデル
       @rankings = @search.result#検索結果
     end
-    
+
     @year = []
     (-12..0).each do |m|
       @m = []
@@ -51,16 +51,16 @@ class RankingsController < ApplicationController
       #end
       @year.push(@m)
     end
-    
+
     @year = Kaminari.paginate_array(@year).page(params[:page]).per(1)
-    
+
   end
-  
+
   def destroy
     @ranking = Ranking.find(params[:id])
     @ranking.destroy
     redirect_to rankings_path
-  end 
+  end
 
 
 
