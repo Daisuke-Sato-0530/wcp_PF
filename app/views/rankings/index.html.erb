@@ -50,7 +50,7 @@
           </tr>
           <tr style="height:40px;">
             <td class="text-right pt-0"><span class="pt-2 align-middle"style="width:50px;"><i class="fas fa-tags"></i>：</span></td><!--タグ-->
-            
+
             <td class="d-flex align-middle text-truncate pt-0"><!--タグ-->
               <% ranking.tag_list.first(3).each do |tag| %>
                 <span class="btn btn-primary mr-1 d-block text-truncate"><%= link_to tag,rankings_path(tag_name: tag),class: "text-white"%></span>
@@ -118,6 +118,7 @@
       <div class="panel-footer">フッター</div>
     </div>
   </div>
+</div>
   <table class="table">
     <% @year.each do |m| %>
       <% m.each do |s| %>
@@ -136,4 +137,3 @@
     <% end %>
     <%= paginate @year %>
   </table>
-</div>

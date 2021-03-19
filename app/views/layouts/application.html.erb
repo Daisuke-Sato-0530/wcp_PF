@@ -15,7 +15,9 @@
       <% if user_signed_in? %>
         <a class="btn btn-lg btn-secondary" href="/rankings" role="button">一覧</a>
         <a class="btn btn-lg btn-secondary" href="/rankings/new" role="button">ランキングを作る!</a>
+        <a class="btn btn-lg btn-secondary" href="/users/show" role="button">マイページ</a>
         <a class="btn btn-lg btn-secondary" href="/users/sign_out" role="button">ログアウト</a>
+
       <% else %>
         <a class="btn btn-secondary" href="/users/sign_up" role="button">アカウント作成(google認証まだ)</a>
         <a class="btn btn-secondary" href="/users/sign_in" role="button">ログイン</a>
