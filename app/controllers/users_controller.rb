@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-
+before_action
   def show
     @user = current_user
     #@rankings = Item.joins(:favorites).group(:ranking_id)
-    @your_favorites = current_user.favorites
+    @your_favorites = current_user.favorites.group(:ranking_id).order(id: "DESC")
   end
 
   def edit

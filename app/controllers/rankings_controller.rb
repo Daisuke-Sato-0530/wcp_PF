@@ -35,10 +35,10 @@ class RankingsController < ApplicationController
     if params[:tag_name].present?#タグを押してタグのパラメーターが送られてきたら
       @search = Ranking.ransack(params[:q])#検索するモデル
       @rankings = @search.result#検索結果
-      @rankings = Ranking.tagged_with("#{params[:tag_name]}")
+      @rankings = Ranking.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
     else
       @search = Ranking.ransack(params[:q])#検索するモデル
-      @rankings = @search.result#検索結果
+      @rankings = @search.result.page(params[:page]).per(10)
     end
 
     @year = []

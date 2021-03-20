@@ -6,6 +6,7 @@ class FavoritesController < ApplicationController
     @ranking = favorite.item.ranking
     @ranking.favorites = (@ranking.favorites + 1)
     @ranking.save
+    favorite.ranking_id = favorite.item.ranking_id
     favorite.save
     #redirect_to ranking_path(@item.ranking) #非同期通信の為コメントアウト
   end
