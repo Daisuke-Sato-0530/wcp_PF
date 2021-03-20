@@ -10,12 +10,14 @@
   </head>
 
   <nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">創作ランキング</span>
+    <span class="navbar-brand mb-0 h1"><%= link_to "創作ランキング", root_path, class:"text-dark"%></span>
     <ul>
       <% if user_signed_in? %>
         <a class="btn btn-lg btn-secondary" href="/rankings" role="button">一覧</a>
         <a class="btn btn-lg btn-secondary" href="/rankings/new" role="button">ランキングを作る!</a>
+        <a class="btn btn-lg btn-secondary" href="/users/show" role="button">マイページ</a>
         <a class="btn btn-lg btn-secondary" href="/users/sign_out" role="button">ログアウト</a>
+
       <% else %>
         <a class="btn btn-secondary" href="/users/sign_up" role="button">アカウント作成(google認証まだ)</a>
         <a class="btn btn-secondary" href="/users/sign_in" role="button">ログイン</a>
@@ -31,7 +33,21 @@
   </body>
 
   <nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0">footer</span>
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#collapse1">背景の作者</a>
+          </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div><a href="https://unsplash.com/@i_am_nah?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">I.am_nah</a> on <a href="/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"></a></div>
+            <div><a href="https://pixabay.com/ja/users/franciscovenancio-3296717/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2357807">Francisco Venâncio</a>による<a href="https://pixabay.com/ja/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2357807">Pixabay</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </nav>
 
 </html>

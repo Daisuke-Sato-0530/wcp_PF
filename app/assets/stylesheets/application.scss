@@ -16,7 +16,7 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
- 
+
  @import url(https://fonts.googleapis.com/css?family=Bitter);
    body {
      margin: 0;
@@ -26,8 +26,33 @@
      font-size: 40px;
      font-weight: 400;
      margin: 0;
+
    }
    p {
      font-size: 20px;
      margin-top: 26px;
+   }
+
+   .image1 {
+    background: image-url("ikemen.jpg");
+    background-size: 600%;
+    background-position: center;
+   }
+
+   .image2 {
+    background: image-url("ikemen2.jpg");
+    background-size: 600%;
+    background-position: center;
+   }
+
+   .image3 {
+    background: image-url("ikemen3.jpg");
+    background-size: 500%;
+    background-position: left;
+   }
+
+   .image3-2 {
+    background: image-url("ikemen3.jpg");
+    background-size: 400%;
+    background-position: right;
    }

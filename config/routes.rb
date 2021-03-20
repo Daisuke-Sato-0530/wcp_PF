@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'users/show'
   root :to => 'homes#top'
   
   devise_scope :user do #ゲストログイン用
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   }
   
   get 'homes/about'
+  resources :users
   resources :rankings, only: [:new, :create, :show, :index, :destroy]
   resources :items, only: [:new, :create, :show, :index] do
     resources :comments, only: [:create, :destroy]
