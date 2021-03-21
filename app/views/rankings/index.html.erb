@@ -1,94 +1,92 @@
 <div>
-<div class="container-fluid">
-  <div class="row mt-3">
-    <div class="col"></div>
-    <div class="col-md-10 mx-auto">
-      <div class="text-right mb-3">
-        <%= search_form_for @search do |f| %>
-          <%= f.label :title_cont, "ランキングタイトルで検索" %><br>
-          <%= f.search_field :title_cont %>
-          <%= f.button :type => "submit",style:'border-style: none; background: none;' do %>
-            <i class="fas fa-search"></i>
+  <div class="container-fluid">
+    <div class="row mt-3">
+      <div class="col image1"></div>
+      <div class="col-md-9 mx-auto">
+        <div class="text-right mb-3">
+          <%= search_form_for @search do |f| %>
+            <%= f.label :title_cont, "ランキングタイトルで検索" %><br>
+            <%= f.search_field :title_cont %>
+            <%= f.button :type => "submit",style:'border-style: none; background: none;' do %>
+              <i class="fas fa-search"></i>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col"></div>
-  </div>
-  <div class="row">
-    <div class="col image1 mx-0">
-    </div>
-    <div class="col-md-9 mx-auto">
-      <table class="table table-responsive text-break table-hover bg-light">
-        <thead>
-          <tr>
-            <th></th>
-            <th class=""><%= sort_link(@search, :title,"ランキング名") %></th>
-            <th class="text-center text-nowrap"><%= sort_link(@search, :favorites,"いいね") %></th>
-            <th class="text-center"><%= sort_link(@search, :comments,"コメント数") %></th>
-            <th class="text-center"><%= sort_link(@search, :created_at,"日付") %></th>
-            <th style="width:1px;"></th>
-          </tr>
-        </thead>
-        <% @rankings.each do |ranking| %>
-          <tr>
-            <td><!--このランキングの最初のアイテムの画像-->
-              <% @image = ranking.items.first%>
-              <%= link_to ranking_path(ranking) do %>
-                <%= attachment_image_tag(@image, :image, :fill, 100, 100, fallback: "no_image.jpg",size:"100x100") %>
-              <% end %>
-            </td>
-            <td class="align-middle h3" style="height:100px; width:33%;"><%= link_to ranking.title.truncate(30), ranking_path(ranking), class: "text-dark"%></td><!--ランキングタイトル(15文字まで表示)-->
-            <td class="text-center align-middle" ><%= ranking.favorites %></td>
-            <td class="text-center align-middle" style="width:25%;"><%= ranking.comments %></td><!--コメント数-->
-            <td class="text-center align-middle" style="width:25%;"><%= ranking.created_at.strftime('%Y/%m/%d') %></td><!--投稿日時-->
-            <td>
-              <% if ranking.user == current_user %>
-                <td style="width:1px;">
-                  <%= link_to "",ranking_path(ranking), method: :delete, data: { confirm: '本当に消しますか?' }, class:"btn-lg fas fa-times-circle text-danger pt-5"%>
-                </td>
-              <% end %>
-            </td>
-          </tr>
-          <tr style="height:40px;">
-            <td class="text-right pt-0"><span class="pt-2 align-middle"style="width:50px;"><i class="fas fa-tags"></i>：</span></td><!--タグ-->
+        </div>
+        <div class="row">
+          <div class="col mx-auto">
+            <table class="table table-responsive text-break table-hover bg-light">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th class=""><%= sort_link(@search, :title,"ランキング名") %></th>
+                  <th class="text-center text-nowrap"><%= sort_link(@search, :favorites,"いいね") %></th>
+                  <th class="text-center"><%= sort_link(@search, :comments,"コメント数") %></th>
+                  <th class="text-center"><%= sort_link(@search, :created_at,"日付") %></th>
+                  <th style="width:1px;"></th>
+                </tr>
+              </thead>
+              <% @rankings.each do |ranking| %>
+                <tr>
+                  <td><!--このランキングの最初のアイテムの画像-->
+                    <% @image = ranking.items.first%>
+                    <%= link_to ranking_path(ranking) do %>
+                      <%= attachment_image_tag(@image, :image, :fill, 100, 100, fallback: "no_image.jpg",size:"100x100") %>
+                    <% end %>
+                  </td>
+                  <td class="align-middle h3" style="height:100px; width:33%;"><%= link_to ranking.title.truncate(30), ranking_path(ranking), class: "text-dark"%></td><!--ランキングタイトル(15文字まで表示)-->
+                  <td class="text-center align-middle" ><%= ranking.favorites %></td>
+                  <td class="text-center align-middle" style="width:25%;"><%= ranking.comments %></td><!--コメント数-->
+                  <td class="text-center align-middle" style="width:25%;"><%= ranking.created_at.strftime('%Y/%m/%d') %></td><!--投稿日時-->
+                  <td>
+                    <% if ranking.user == current_user %>
+                      <td style="width:1px;">
+                        <%= link_to "",ranking_path(ranking), method: :delete, data: { confirm: '本当に消しますか?' }, class:"btn-lg fas fa-times-circle text-danger pt-5"%>
+                      </td>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr style="height:40px;">
+                  <td class="text-right pt-0"><span class="pt-2 align-middle"style="width:50px;"><i class="fas fa-tags"></i>：</span></td><!--タグ-->
 
-            <td class="d-flex align-middle text-truncate pt-0"><!--タグ-->
-              <% ranking.tag_list.first(3).each do |tag| %>
-                <span class=" mr-1 d-block text-truncate"><%= link_to tag,rankings_path(tag_name: tag),class: "text-white btn btn-primary"%></span>
-              <% end %>
-              <% if ranking.tag_list.count >= 3 %>
-              <td>
-                <div class="panel-group">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#collapse<%= ranking.id %>">All Tags</a>
-                      </h4>
-                    </div>
-                    <div id="collapse<%= ranking.id %>" class="panel-collapse collapse">
-                      <div class="panel-body">
-                        <% ranking.tag_list.each do |tag| %>
-                          <span class="btn btn-primary text-truncate mb-1"><%= link_to tag,rankings_path(tag_name: tag),class: "text-white"%></span>
-                        <% end %>
+                  <td class="d-flex align-middle text-truncate pt-0"><!--タグ-->
+                    <% ranking.tag_list.first(3).each do |tag| %>
+                      <span class=" mr-1 d-block text-truncate"><%= link_to tag,rankings_path(tag_name: tag),class: "text-white btn btn-primary"%></span>
+                    <% end %>
+                    <% if ranking.tag_list.count >= 3 %>
+                    <td>
+                      <div class="panel-group">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" href="#collapse<%= ranking.id %>">All Tags</a>
+                            </h4>
+                          </div>
+                          <div id="collapse<%= ranking.id %>" class="panel-collapse collapse">
+                            <div class="panel-body">
+                              <% ranking.tag_list.each do |tag| %>
+                                <span class="btn btn-primary text-truncate mb-1"><%= link_to tag,rankings_path(tag_name: tag),class: "text-white"%></span>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <% else %>
-                <td></td>
+                    </td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
               <% end %>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-        <% end %>
-      </table>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col image2"></div>
     </div>
-    <div class="col image2 mx-0" style="height:100; width:100%;"></div>
+    </div>
   </div>
-</div>
 </div>
 
 <%= paginate @rankings %>

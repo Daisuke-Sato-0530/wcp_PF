@@ -10,36 +10,30 @@
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
 
-          <div class="field">
-            <%= f.label :"新しいパスワード" %> <span class="text-muted">(<em><%= @minimum_password_length %>文字以上、</em>パスワードを変更しない場合は空白のまま)</span><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
-            <% if @minimum_password_length %>
-              <br />
-
-            <% end %>
+          <div class="field w-100">
+            新しいパスワード<br>
+            <%= f.password_field :password, :placeholder => "6文字以上",size:"40", autocomplete: "new-password", class:"mb-3" %>
           </div>
 
           <div class="field">
-            <%= f.label :"新しいパスワード" %><span class="text-muted">(確認)</span><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            新しいパスワード<span class="text-muted">(確認)</span><br />
+            <%= f.password_field :password_confirmation, size:"40", autocomplete: "new-password", class:"mb-3" %>
           </div>
 
           <div class="field">
-            <%= f.label :"現在のパスワード" %><br />
-            <%= f.password_field :current_password, autocomplete: "current-password" %>
+            現在のパスワード<br />
+            <%= f.password_field :current_password, size:"40", autocomplete: "current-password", class:"mb-3" %>
           </div>
 
-          <div class="actions">
-            <%= f.submit "Update" %>
+          <div class="actions text-center">
+            <%= f.submit "Update", class:"btn btn-success w-100" %>
           </div>
         <% end %>
 
-        <h3>アカウント削除</h3>
 
-        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "本当にアカウントを削除しますか?" }, method: :delete %>
-
-        <%= link_to "Back", :back %>
     </div>
-  <div class="col"></div>
+    <div class="col d-flex align-items-end">
+        <div style="width:100%;" class="text-right"><%= link_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当にアカウントを削除しますか?" }, method: :delete %></div>
+    </div>
   </div>
 </div>
