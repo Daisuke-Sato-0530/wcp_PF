@@ -8,6 +8,9 @@ before_action
 
   def edit
     @user = current_user
+    if @user.email == "guest@example.com"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def update
