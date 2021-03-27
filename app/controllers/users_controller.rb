@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-before_action
+
+
+
   def show
     @user = current_user
     #@rankings = Item.joins(:favorites).group(:ranking_id)
