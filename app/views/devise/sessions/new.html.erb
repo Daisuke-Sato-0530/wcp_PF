@@ -20,13 +20,16 @@
           <% end %>
         </div>
         <div class="mx-auto" style="height:250px; width:250px;">
-          <%= f.submit "GO!" , class: "btn btn-success w-100 h-100 rounded-circle" %>
-        </div>
-        <div class="text-center">
+          <%= f.submit "ログイン！" , class: "btn btn-success w-100" %>
+          <div class="text-center pt-3">
           <%- resource_class.omniauth_providers.each do |provider| %>
-            <%= link_to "googleでログイン", omniauth_authorize_path(resource_name, provider) %><br />
+            <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+              <i class="fab fa-google btn btn-primary rounded-circle"></i>
+            <% end %><br />
           <% end %>
         </div>
+        </div>
+
       <% end %>
     </div>
     <div class="col"></div>

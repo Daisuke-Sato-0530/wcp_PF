@@ -4,17 +4,17 @@
     <div class="col text-center">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-      
+
         <div class="field m-2">
           <%= f.label :名前 %><br />
           <%= f.text_field :name %>
         </div>
-      
+
         <div class="field m-2">
           <%= f.label :メールアドレス %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
-      
+
         <div class="field m-2">
           <%= f.label :パスワード %>
           <% if @minimum_password_length %>
@@ -22,19 +22,19 @@
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password" %>
         </div>
-      
+
         <div class="field m-2">
           <%= f.label :パスワード確認 %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
-      
-        <div class="mx-auto mt-3" style="height:250px; width:250px;">
+
+        <div class="mx-auto mt-3 mb-3">
           <%= f.submit "アカウント作成", class:"btn btn-danger w-100 h-100" %>
         </div>
       <% end %>
-      
+
       <%- resource_class.omniauth_providers.each do |provider| %>
-        <%= link_to "googleでログイン", omniauth_authorize_path(resource_name, provider) %><br />
+        <%= link_to omniauth_authorize_path(resource_name, provider) do %><i class="fab fa-google btn btn-primary rounded-circle"></i><% end %> <br />
       <% end %>
     </div>
     <div class="col"></div>

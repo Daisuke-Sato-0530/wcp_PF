@@ -34,9 +34,9 @@
                     <% end %>
                   </td>
                   <td class="align-middle h3" style="height:100px; width:33%;"><%= link_to ranking.title.truncate(30), ranking_path(ranking), class: "text-dark"%></td><!--ランキングタイトル(15文字まで表示)-->
-                  <td class="text-center align-middle" ><%= ranking.favorites %></td>
-                  <td class="text-center align-middle" style="width:25%;"><%= ranking.comments %></td><!--コメント数-->
-                  <td class="text-center align-middle" style="width:25%;"><%= ranking.created_at.strftime('%Y/%m/%d') %></td><!--投稿日時-->
+                  <td class="text-center align-middle" ><i class="fas fa-heart"></i></i></i><%= ranking.favorites %></td>
+                  <td class="text-center align-middle" style="width:25%;"><i class="far fa-comment-dots"></i><%= ranking.comments %></td><!--コメント数-->
+                  <td class="text-center align-middle" style="width:25%;"><i class="far fa-calendar-alt mr-1"></i><%= ranking.created_at.strftime('%Y/%m/%d') %></td><!--投稿日時-->
                   <td>
                     <% if ranking.user == current_user %>
                       <td style="width:1px;">
@@ -54,7 +54,7 @@
                     <% end %>
 
                     <% if ranking.tag_list.count >= 3 %>
-                    <h4 class="panel-title">
+                    <h4 class="panel-title"><!--折り畳みを開く-->
                       <a data-toggle="collapse" href="#collapse<%= ranking.id %>">▼</a>
                     </h4>
                     <td colspan="4">

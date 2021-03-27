@@ -39,8 +39,8 @@
       <% end %>
     </table>
     <div class="text-right">
-      <% if @user.provider.blank? %>
-      <%= link_to "ユーザー編集", edit_user_path(current_user) %>
+      <% if @user.email != "guest@example.com" %>
+        <%= link_to "ユーザー編集", edit_user_path(current_user) %>
       <% end %>
     </div>
   </div>
