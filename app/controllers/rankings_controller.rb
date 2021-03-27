@@ -4,7 +4,7 @@ class RankingsController < ApplicationController
 
   def new
     @ranking = Ranking.new
-    @items = @ranking.items.build
+    @items = @ranking.items.build#ランキングのNewにItemの入力フォームをあらかじめ一つ追加
   end
 
   def create
@@ -54,9 +54,6 @@ class RankingsController < ApplicationController
       #end
       @year.push(@m)
     end
-
-    @year = Kaminari.paginate_array(@year).page(params[:page]).per(1)
-
   end
 
   def destroy

@@ -18,7 +18,7 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th class=""><%= sort_link(@search, :title,"ランキング名") %></th>
+                  <th class=""><%= sort_link(@search, :title,"ランキング名") %></th><!--sort_linkで昇順降順-->
                   <th class="text-center text-nowrap"><%= sort_link(@search, :favorites,"いいね") %></th>
                   <th class="text-center"><%= sort_link(@search, :comments,"コメント数") %></th>
                   <th class="text-center"><%= sort_link(@search, :created_at,"日付") %></th>
@@ -54,7 +54,7 @@
                     <% end %>
 
                     <% if ranking.tag_list.count >= 3 %>
-                    <h4 class="panel-title"><!--折り畳みを開く-->
+                    <h4 class="panel-title"><!--折り畳みを開く。panel_title移植したらそのまま折り畳み使えた-->
                       <a data-toggle="collapse" href="#collapse<%= ranking.id %>">▼</a>
                     </h4>
                     <td colspan="4">
