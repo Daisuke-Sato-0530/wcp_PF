@@ -13,15 +13,15 @@
     <span class="navbar-brand mb-0 h1"><%= link_to "創作ランキング", root_path, class:"text-dark"%></span>
     <ul>
       <% if user_signed_in? %>
-        <a class="ml-5" href="/rankings" role="button"><i class="fas fa-balance-scale-right mr-1"></i>一覧</a>
-        <a class="ml-5" href="/rankings/new" role="button"><i class="fas fa-birthday-cake"></i>ランキングを作る!</a>
-        <a class="ml-5" href="/users/show" role="button"><i class="fas fa-user"></i>マイページ</a>
-        <a class="ml-5" href="/users/sign_out" role="button"><i class="fas fa-sign-out-alt"></i>ログアウト</a>
+        <a class="ml-5 text-dark" href="/rankings" role="button"><i class="fas fa-balance-scale-right mr-1"></i>一覧</a>
+        <a class="ml-5 text-dark" href="/rankings/new" role="button"><i class="fas fa-birthday-cake"></i>ランキングを作る!</a>
+        <a class="ml-5 text-dark" href="/users/show" role="button"><i class="fas fa-user"></i>マイページ</a>
+        <a class="ml-5 text-dark" href="/users/sign_out" role="button"><i class="fas fa-sign-out-alt"></i>ログアウト</a>
 
       <% else %>
-        <a class="btn btn-secondary" href="/users/sign_up" role="button">アカウント作成(google認証まだ)</a>
-        <a class="btn btn-secondary" href="/users/sign_in" role="button">ログイン</a>
-        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post,class:"btn btn-secondary" %><!--aタグでメソッド指定どうやるの？-->
+        <a class="ml-5 text-dark" href="/users/sign_up" role="button">アカウント作成</a>
+        <a class="ml-5 text-dark" href="/users/sign_in" role="button">ログイン</a>
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post,class:"ml-5 text-dark" %><!--aタグでメソッド指定どうやるの？-->
       <% end %>
     </ul>
   </nav>
@@ -41,7 +41,7 @@
           </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse">
-          <div class="panel-body">
+          <div class="panel-body"><!--画像追加したらここに作者を記入-->
             <div><a href="https://unsplash.com/@i_am_nah?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">I.am_nah</a> on <a href="/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"></a></div>
             <div><a href="https://pixabay.com/ja/users/franciscovenancio-3296717/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2357807">Francisco Venâncio</a>による<a href="https://pixabay.com/ja/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2357807">Pixabay</a></div>
             <div><a href="https://pixabay.com/ja/users/ivanovgood-1982503/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2696947">Alexandr Ivanov</a>による<a href="https://pixabay.com/ja/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2696947">Pixabay</a>からの画像</div>
