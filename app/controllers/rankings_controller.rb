@@ -35,14 +35,13 @@ class RankingsController < ApplicationController
   #end
 
   def index
-    if params[:tag_name].present?#タグを押してタグのパラメーターが送られてきたら
-      @search = Ranking.ransack(params[:q])#検索するモデル
-      @rankings = @search.result#検索結果
-      @rankings = Ranking.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
-    else
-      @search = Ranking.ransack(params[:q])#検索するモデル
-      @rankings = @search.result.page(params[:page]).per(10)
-    end
+    @search = Ranking.ransack(params[:q])#検索するモデル
+    @rankings = if params[:tag_name].present?#タグを押してタグのパラメーターが送られてきたら
+                  Ranking.tagged_with("#{params[:tag_name]}")
+                else
+                  @search.result
+                end
+    @rankings = @rankings.page(params[:page]).per(10)
 
     @year = []
     (-12..0).each do |m|
